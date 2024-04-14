@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Salario Quincenal</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Salario Quincenal</h1>
+        <form id="salary-form">
+            <label for="hourly-salary">Salario por hora:</label>
+            <input type="number" id="hourly-salary" name="hourly-salary" step="0.01" required>
+            
+            <label for="hours-worked">Horas trabajadas en la quincena:</label>
+            <input type="number" id="hours-worked" name="hours-worked" step="0.01" required>
+
+            <label for="extra-hours">Horas extras trabajadas:</label>
+            <input type="number" id="extra-hours" name="extra-hours" step="0.01" required>
+            
+            <label for="descuentos">Descuentos:</label>
+            <input type="number" id="descuentos" name="descuentos" step="0.01" required>
+
+            <label for="dias-faltados">Días faltados:</label>
+            <input type="number" id="dias-faltados" name="dias-faltados" step="1" required>
+            
+            <button type="button" onclick="calcularSalario()">Calcular</button>
+        </form>
+        
+        <div id="result" class="result"></div>
+    </div>
+</body>
+</html>
