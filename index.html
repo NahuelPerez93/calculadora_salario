@@ -6,43 +6,64 @@
     <title>Calculadora de Salario Quincenal</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+        .ui-datepicker-calendar .ui-state-default {
+            background: #f0ebeb;
+            color: #000;
+        }
+        .ui-datepicker-calendar .ui-state-highlight {
+            background: #00FF00 !important;
+            color: #000;
+        }
+        .ui-datepicker-calendar .ui-state-highlight-saturday {
+            background: #FF0000 !important;
+            color: #000;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Calculadora de Salario Quincenal</h1>
         <div class="input-group">
             <label for="categoria">Categoría:</label>
-            <select id="categoria">
-                <option value="ingresante">Ingresante</option>
-                <option value="operario_calificado">Operario Calificado</option>
-                <option value="medio_oficial">Medio Oficial</option>
-                <option value="operario_especializado">Operario Especializado</option>
-                <option value="operario_multiple">Operario Múltiple</option>
-                <option value="oficial">Oficial</option>
-                <option value="oficial_multiple">Oficial Múltiple</option>
+            <select id="categoria" onchange="actualizarSalarioPorHora()">
+                <option value="ingresante" data-salario="2191.55">Ingresante</option>
+                <option value="operario_calificado" data-salario="2374.00">Operario Calificado</option>
+                <option value="medio_oficial" data-salario="2558.60">Medio Oficial</option>
+                <option value="operario_especializado" data-salario="2737.12">Operario Especializado</option>
+                <option value="operario_multiple" data-salario="2893.69">Operario Múltiple</option>
+                <option value="oficial" data-salario="3027.41">Oficial</option>
+                <option value="oficial_multiple" data-salario="3261.00">Oficial Múltiple</option>
             </select>
         </div>
         <div class="input-group">
-        <form id="salary-form">
-            <label for="hourly-salary">Salario por hora:</label>
-            <input type="number" id="hourly-salary" name="hourly-salary" step="0.01" required>
-            
-            <label for="hours-worked">Horas trabajadas en la quincena:</label>
-            <input type="number" id="hours-worked" name="hours-worked" step="0.01" required>
+            <form id="salary-form">
+                <label for="hourly-salary">Salario por hora:</label>
+                <input type="number" id="hourly-salary" name="hourly-salary" step="0.01" required>
+                
+                <label for="hours-worked">Horas trabajadas en la quincena:</label>
+                <input type="number" id="hours-worked" name="hours-worked" step="0.01" required>
 
-            <label for="extra-hours">Horas extras trabajadas:</label>
-            <input type="number" id="extra-hours" name="extra-hours" step="0.01" required>
+                <label for="extra-hours">Horas extras trabajadas:</label>
+                <input type="number" id="extra-hours" name="extra-hours" step="0.01" required>
+                
+                <label for="descuentos">Descuentos:</label>
+                <div id="descuentos-container"></div> <!-- Contenedor para los descuentos -->
+                <button type="button" onclick="agregarDescuento()">Agregar descuento</button>
+                
+                <label for="dias-faltados">Días faltados:</label>
+                <input type="number" id="dias-faltados" name="dias-faltados" step="1" required>
+                
+                <button type="button" onclick="calcularSalario()">Calcular</button>
+                <button type="button" onclick="limpiarFormulario()">Limpiar formulario</button> <!-- Botón de limpiar formulario -->
+            </form>
             
-            <label for="descuentos">Descuentos:</label>
-            <input type="number" id="descuentos" name="descuentos" step="0.01" required>
-
-            <label for="dias-faltados">Días faltados:</label>
-            <input type="number" id="dias-faltados" name="dias-faltados" step="1" required>
-            
-            <button type="button" onclick="calcularSalario()">Calcular</button>
-        </form>
-        
-        <div id="result" class="result"></div>
+            <div id="result" class="result"></div>
+            <div id="datepicker"></div> <!-- Aquí se mostrará el calendario -->
+        </div>
     </div>
-</body>
-</html>
+
+    
