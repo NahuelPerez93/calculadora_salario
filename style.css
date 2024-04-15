@@ -1,4 +1,9 @@
 
+body {
+    background-color: #000; /* Fondo negro para toda la página */
+    color: #fff; /* Texto blanco */
+}
+
 input[type="number"],
 select,
 button {
@@ -8,27 +13,31 @@ button {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    background-color: #333; /* Fondo negro */
+    color: #fff; /* Texto blanco */
 }
 
 button {
     width: 100%;
-    background-color: #4caf50;
+    background-color: #a01919;
     color: #fff;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #12bb1b;
 }
 
 .result {
     padding: 20px;
-    background-color: #f0f0f0;
+    background-color: #000000;
     border-radius: 4px;
     font-weight: bold;
     text-align: center;
+    color: #f5f2f2; /* Texto negro */
 }
+
 
 @media screen and (min-width: 600px) {
     .container {
