@@ -23,14 +23,18 @@ function calcularSalario() {
     // Descuento de horas extras por cada día de falta
 var horasExtrasDescuento = diasFaltados * 9;
 if (horasExtras >= horasExtrasDescuento) {
+    // Aplicar descuento total de horas extras
     horasExtras -= horasExtrasDescuento;
 } else {
-    // Aplicar descuento total de horas extras
+    // Aplicar descuento parcial de horas extras
     horasExtrasDescuento = horasExtras;
     horasExtras = 0;
-    // No hay horas extras disponibles para descontar, entonces descontamos horas normales
-    horasTrabajadas -= horasExtrasDescuento;
+    // Calcular horas normales a descontar (50% de las horas faltantes)
+    var horasNormalesDescuento = (horasExtrasDescuento - horasExtras) * 0.5;
+    // Descontar horas normales
+    horasTrabajadas -= horasNormalesDescuento;
 }
+
     
     var descuentosInputs = document.querySelectorAll('#descuentos-container input');
     var descuentos = 0;
