@@ -30,7 +30,7 @@ if (horasExtras >= horasExtrasDescuento) {
     var horasExtrasDescuentoParcial = horasExtras;
     horasExtras = 0;
     // Calcular horas normales a descontar
-    var horasNormalesDescuento = (horasExtrasDescuentoParcial * 2) + ((horasExtrasDescuento - horasExtrasDescuentoParcial) * 0.5);
+    var horasNormalesDescuento = ((horasExtrasDescuento - horasExtrasDescuentoParcial) * 0.5);
     // Descontar horas normales
     horasTrabajadas -= horasNormalesDescuento;
 }
