@@ -29,8 +29,8 @@ if (horasExtras >= horasExtrasDescuento) {
     // Aplicar descuento parcial de horas extras
     horasExtrasDescuento = horasExtras;
     horasExtras = 0;
-    // Calcular horas normales a descontar (50% de las horas faltantes)
-    var horasNormalesDescuento = (horasExtrasDescuento - horasExtras) * 1;
+    // Calcular horas normales a descontar
+    var horasNormalesDescuento = (horasExtrasDescuento * 2) + ((horasExtrasDescuento - horasExtras) * 0.5);
     // Descontar horas normales
     horasTrabajadas -= horasNormalesDescuento;
 }
