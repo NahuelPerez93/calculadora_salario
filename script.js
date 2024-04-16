@@ -21,6 +21,7 @@ function calcularSalario() {
     var diasFaltados = parseFloat(document.getElementById('dias-faltados').value);
 
     // Descuento de horas extras por cada día de falta
+// Descuento de horas extras por cada día de falta
 var horasExtrasDescuento = diasFaltados * 9;
 if (horasExtras >= horasExtrasDescuento) {
     // Aplicar descuento total de horas extras
@@ -30,10 +31,11 @@ if (horasExtras >= horasExtrasDescuento) {
     var horasExtrasDescuentoParcial = horasExtras;
     horasExtras = 0;
     // Calcular horas normales a descontar
-    var horasNormalesDescuento = (horasExtrasDescuentoParcial * 2) + ((horasExtrasDescuento - horasExtrasDescuentoParcial) * 0.5);
+    var horasNormalesDescuento = (horasExtrasDescuento - horasExtrasDescuentoParcial) * 0.5;
     // Descontar horas normales
     horasTrabajadas -= horasNormalesDescuento;
 }
+    
     
 
 
