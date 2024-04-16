@@ -25,12 +25,13 @@ var horasExtrasDescuento = diasFaltados * 9;
 if (horasExtras >= horasExtrasDescuento) {
     horasExtras -= horasExtrasDescuento;
 } else {
-    // Aplicar descuento de horas extras
+    // Aplicar descuento total de horas extras
     horasExtrasDescuento = horasExtras;
     horasExtras = 0;
-    // Descuento de horas normales
+    // No hay horas extras disponibles para descontar, entonces descontamos horas normales
     horasTrabajadas -= horasExtrasDescuento;
 }
+    
     var descuentosInputs = document.querySelectorAll('#descuentos-container input');
     var descuentos = 0;
     for (var i = 0; i < descuentosInputs.length; i++) {
