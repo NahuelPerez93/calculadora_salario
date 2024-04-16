@@ -93,4 +93,15 @@ $(function() {
         }
     });
 
-    
+    function actualizarCalendario() {
+        var hoursPerDay = 9;
+        var totalHours = selectedDays.filter(function(dateString) {
+            return new Date(dateString).getDay() !== 6;
+        }).length * hoursPerDay;
+        document.getElementById('hours-worked').value = totalHours;
+    }
+
+    $('#datepicker').on('click', '.disabled', function() {
+        $(this).css('background-color', 'red');
+    });
+});
