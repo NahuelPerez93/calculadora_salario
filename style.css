@@ -1,4 +1,3 @@
-
 body {
     background-color: #000; /* Fondo negro para toda la página */
     color: #fff; /* Texto blanco */
@@ -35,12 +34,26 @@ button:hover {
     border-radius: 4px;
     font-weight: bold;
     text-align: center;
-    color: #f5f2f2; /* Texto negro */
+    color: #f5f2f2; /* Texto blanco */
 }
-
 
 @media screen and (min-width: 600px) {
     .container {
         max-width: 600px;
     }
+}
+
+.ui-datepicker-calendar .ui-state-default {
+    background: #f0ebeb;
+    color: #000;
+}
+
+.ui-datepicker-calendar .ui-state-highlight {
+    background: #00FF00 !important;
+    color: #000;
+}
+
+.ui-datepicker-calendar .ui-state-highlight-saturday {
+    background: #FF0000 !important;
+    color: #000;
 }
