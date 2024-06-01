@@ -17,30 +17,25 @@ function agregarDescuento() {
 function calcularSalario() {
     var salarioPorHora = parseFloat(document.getElementById('hourly-salary').value);
     var horasTrabajadas = parseFloat(document.getElementById('hours-worked').value);
-    var horasExtras = parseFloat(document.getElementById('extra-hours').value);
+    var horasExtras50 = parseFloat(document.getElementById('extra-hours').value);
+    var horasExtras100 = parseFloat(document.getElementById('extra-hours-100').value);
     var diasFaltados = parseFloat(document.getElementById('dias-faltados').value);
 
     // Descuento de horas extras por cada día de falta
-// Descuento de horas extras por cada día de falta
-var horasExtrasDescuento = diasFaltados * 9;
-if (horasExtras >= horasExtrasDescuento) {
-    // Aplicar descuento total de horas extras
-    horasExtras -= horasExtrasDescuento;
-} else {
-    // Aplicar descuento parcial de horas extras
-    var horasExtrasDescuentoParcial = horasExtras;
-    horasExtras = 0;
-    // Calcular horas normales a descontar
-    var horasNormalesDescuento = (horasExtrasDescuento - horasExtrasDescuentoParcial) * 1;
-    // Descontar horas normales
-    horasTrabajadas -= horasNormalesDescuento;
-}
-    
-    
+    var horasExtrasDescuento = diasFaltados * 9;
+    if (horasExtras50 >= horasExtrasDescuento) {
+        // Aplicar descuento total de horas extras
+        horasExtras50 -= horasExtrasDescuento;
+    } else {
+        // Aplicar descuento parcial de horas extras
+        var horasExtrasDescuentoParcial = horasExtras50;
+        horasExtras50 = 0;
+        // Calcular horas normales a descontar
+        var horasNormalesDescuento = (horasExtrasDescuento - horasExtrasDescuentoParcial) * 1;
+        // Descontar horas normales
+        horasTrabajadas -= horasNormalesDescuento;
+    }
 
-
-
-    
     var descuentosInputs = document.querySelectorAll('#descuentos-container input');
     var descuentos = 0;
     for (var i = 0; i < descuentosInputs.length; i++) {
@@ -48,11 +43,13 @@ if (horasExtras >= horasExtrasDescuento) {
     }
 
     var salarioBasico = salarioPorHora * horasTrabajadas;
-    var salarioExtra = salarioPorHora * 1.5 * horasExtras;
-    var salarioTotal = salarioBasico + salarioExtra - descuentos;
+    var salarioExtra50 = salarioPorHora * 1.5 * horasExtras50;
+    var salarioExtra100 = salarioPorHora * 2 * horasExtras100;
+    var salarioTotal = salarioBasico + salarioExtra50 + salarioExtra100 - descuentos;
 
     var resultado = "Horas normales trabajadas: " + (horasTrabajadas > 0 ? horasTrabajadas : 0) + "<br>";
-    resultado += "Horas extras trabajadas: " + horasExtras + "<br>";
+    resultado += "Horas extras trabajadas al 50%: " + horasExtras50 + "<br>";
+    resultado += "Horas extras trabajadas al 100%: " + horasExtras100 + "<br>";
     resultado += "Horas extras descontadas por días faltados: " + horasExtrasDescuento + "<br>";
     resultado += "Días faltados: " + diasFaltados + "<br>";
     resultado += "Descuentos: $" + descuentos.toFixed(2) + "<br>";
@@ -60,6 +57,7 @@ if (horasExtras >= horasExtrasDescuento) {
 
     document.getElementById('result').innerHTML = resultado;
 }
+
 function limpiarFormulario() {
     var inputs = document.querySelectorAll('input[type="number"]');
     for (var i = 0; i < inputs.length; i++) {
@@ -69,6 +67,7 @@ function limpiarFormulario() {
     descuentosContainer.innerHTML = ''; // Limpiar contenedor de descuentos
     document.getElementById('result').innerHTML = ''; // Limpiar resultado
 }
+
 $(function() {
     var selectedDays = [];
 
@@ -84,24 +83,4 @@ $(function() {
             }
             actualizarCalendario();
         },
-        beforeShowDay: function(date) {
-            var day = date.getDay();
-            var dateString = $.datepicker.formatDate('yy-mm-dd', date);
-            var selected = (selectedDays.indexOf(dateString) !== -1);
-            var isSaturday = (day === 6);
-            return [day >= 1 && day <= 5, selected ? 'ui-state-highlight' : '', isSaturday ? 'disabled' : ''];
-        }
-    });
-
-    function actualizarCalendario() {
-        var hoursPerDay = 9;
-        var totalHours = selectedDays.filter(function(dateString) {
-            return new Date(dateString).getDay() !== 6;
-        }).length * hoursPerDay;
-        document.getElementById('hours-worked').value = totalHours;
-    }
-
-    $('#datepicker').on('click', '.disabled', function() {
-        $(this).css('background-color', 'red');
-    });
-});
+        beforeShowDay: function(date) 
