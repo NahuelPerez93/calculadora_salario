@@ -83,4 +83,25 @@ $(function() {
             }
             actualizarCalendario();
         },
-        beforeShowDay: function(date) 
+        beforeShowDay: function(date) {
+            var day = date.getDay();
+            var dateString = $.datepicker.formatDate('yy-mm-dd', date);
+            var selected = (selectedDays.indexOf(dateString) !== -1);
+            var isSaturday = (day === 6);
+            return [day >= 1 && day <= 5, selected ? 'ui-state-highlight' : '', isSaturday ? 'disabled' : ''];
+        }
+    });
+
+    function actualizarCalendario() {
+        var hoursPerDay = 9;
+        var totalHours = selectedDays.filter(function(dateString) {
+            return new Date(dateString).getDay() !== 6;
+        }).length * hoursPerDay;
+        document.getElementById('hours-worked').value = totalHours;
+    }
+
+    $('#datepicker').on('click', '.disabled', function() {
+        $(this).css('background-color', 'red');
+    });
+});
+                    
